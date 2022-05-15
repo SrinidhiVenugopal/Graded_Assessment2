@@ -8,9 +8,9 @@ public class Main {
        
         BinarySearchTree.root = new Node(50);
         BinarySearchTree.root.left = new Node(30);
-        BinarySearchTree.root.right = new Node(35);
-        BinarySearchTree.root.left.left = new Node(20);
-        BinarySearchTree.root.right.left= new Node(45);
+        BinarySearchTree.root.right = new Node(60);
+        BinarySearchTree.root.left.left = new Node(10);
+        BinarySearchTree.root.right.left= new Node(55);
 
         tree.BST_To_SkewedTree(BinarySearchTree.root);
 
