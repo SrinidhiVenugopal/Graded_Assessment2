@@ -1,94 +1,68 @@
-package learnJava;
-
-import java.io.*;
+package lab2;
 
 class Node
 {
-	int val;
-	Node left, right;
-	
-		Node(int item)
-	{
-		val = item;
-		left = right = null;
-	}
+    int data;
+    Node left, right;
+
+    public Node(int item) {
+        data = item;
+        left = right = null;
+    }
 }
 
-class GFG
-{
-	public static Node node;
-	static Node prevNode = null;
-	static Node headNode = null;
+public class BinarySearchTree {
+    public static Node root;
+    static Node prevNode = null;
+    public static Node headNode = null;
+    public void BST_To_SkewedTree(Node root) {
+        if(root == null)
+            return;
 
-	// Function to to flatten the binary
-	// search tree into a skewed tree in
-	// increasing / decreasing order
-	static void BSToSkewed(Node root,
-								int order)
-	{
-		
-		if(root == null)
-		{
-			return;
-		}
-		
-		if(order > 0)
-		{
-			BSToSkewed(root.right, order);
-		}
-		else
-		{
-			BSToSkewed(root.left, order);
-		}
-		Node rightNode = root.right;
-		Node leftNode = root.left;
-	
-		if(headNode == null)
-		{
-			headNode = root;
-			root.left = null;
-			prevNode = root;
-		}
-		else
-		{
-			prevNode.right = root;
-			root.left = null;
-			prevNode = root;
-		}
-		
-		if (order > 0)
-		{
-			BSToSkewed(leftNode, order);
-		}
-		else
-		{
-			BSToSkewed(rightNode, order);
-		}
-	}
-	
-	static void traverseRightSkewed(Node root)
-	{
-		if(root == null)
-		{
-			return;
-		}
-		System.out.print(root.val + " ");
-		traverseRightSkewed(root.right);	
-	}
+        BST_To_SkewedTree(root.left);
 
-	public static void main (String[] args)
-	{
-	
-		GFG tree = new GFG();
-		
-		tree.node = new Node(50);
-		tree.node.left = new Node(30);
-		tree.node.right = new Node(60);
-		tree.node.left.left = new Node(10);
-		tree.node.right.left= new Node(55);
-	
-		int order = 0;
-		BSToSkewed(node, order);
-		traverseRightSkewed(headNode);
-	}
+        if(headNode == null)
+            headNode = root;
+        else
+            prevNode.right = root;
+
+        root.left = null;
+        prevNode = root;
+
+        BST_To_SkewedTree(root.right);
+    }
+
+    public void Traverse_Tree(Node root) {
+        if(root == null)
+            return;
+
+        if (root.left != null)
+            Traverse_Tree(root.left);
+
+        System.out.print(root.data + " ");
+
+        if (root.right != null)
+            Traverse_Tree(root.right);
+    }
+}
+
+package lab2;
+
+public class Main {
+    static BinarySearchTree tree = new BinarySearchTree();
+
+    public static void main(String[] args) {
+
+        BinarySearchTree.root = new Node(50);
+        BinarySearchTree.root.left = new Node(30);
+        BinarySearchTree.root.right = new Node(60);
+        BinarySearchTree.root.left.left = new Node(10);
+        BinarySearchTree.root.right.left= new Node(55);
+
+        tree.BST_To_SkewedTree(BinarySearchTree.root);
+
+        System.out.print("\nSkewed Tree: ");
+        tree.Traverse_Tree(BinarySearchTree.headNode);
+    }
+
 }
