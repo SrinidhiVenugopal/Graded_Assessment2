@@ -1,4 +1,4 @@
-package building;
+package lab1;
 
 import java.util.Scanner;
 
@@ -20,7 +20,7 @@ public class construction {
 		int max = totalNoOfBuildings;
 		int start = 1;
 		
-		//max should be greter than 0 and start should not exceed total no of buildings
+		//max should be greater than 0 and start should not exceed total no of buildings
 		
 		while(max>0 && start<=totalNoOfBuildings) {
 			if(floorSize[start]==max) {
@@ -31,12 +31,11 @@ public class construction {
 			start++;
 		}
 	}
-	
 
 	private static int printAndReturnMax(int[] floorSize, int start,int max,int totalNoOfBuildings) {
 		System.out.println("Day: "+start+" ");
 		
-		//if start has reached the end print all the values from max in decending order
+		//if start has reached the end print all the values from max in descending order
 			if(start==totalNoOfBuildings) {
 				for(int i=max;i>=1;i--) {
 					System.out.print(i+" ");	
